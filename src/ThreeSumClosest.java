@@ -13,14 +13,18 @@ public class ThreeSumClosest {
 				int sum = array[i] + array[start] + array[end];
 				if (sum == target) {
 					return sum;
-				} else if (Math.abs(sum - target) < min) {
-					min = Math.abs(sum - target);
-					ans = sum;
-				}
-				if (sum > target) {
-					end--;
-				} else {
+				} else if (sum < target) {
+					if (Math.abs(target - sum) < min) {
+						ans = sum;
+						min = Math.abs(target - sum);
+					}
 					start++;
+				} else {
+					if (Math.abs(target - sum) <= min) {
+						ans = sum;
+						min = Math.abs(target - sum);
+					}
+					end--;
 				}
 			}
 		}
